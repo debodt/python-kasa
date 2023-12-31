@@ -114,7 +114,7 @@
     },
     "get_device_info": {
         "avatar": "switch_s500d",
-        "brightness": 51,
+        "brightness": 100,
         "default_states": {
             "re_power_type": "always_off",
             "re_power_type_capability": [
@@ -125,7 +125,7 @@
             "type": "last_states"
         },
         "device_id": "0000000000000000000000000000000000000000",
-        "device_on": false,
+        "device_on": true,
         "fw_id": "00000000000000000000000000000000",
         "fw_ver": "1.0.2 Build 230810 Rel.141013",
         "has_set_location_info": true,
@@ -139,10 +139,10 @@
         "model": "KS225",
         "nickname": "I01BU0tFRF9OQU1FIw==",
         "oem_id": "00000000000000000000000000000000",
-        "on_time": 0,
+        "on_time": 4195,
         "overheat_status": "normal",
         "region": "America/Toronto",
-        "rssi": -52,
+        "rssi": -53,
         "signal_level": 2,
         "specs": "",
         "ssid": "I01BU0tFRF9TU0lEIw==",
@@ -152,13 +152,13 @@
     "get_device_time": {
         "region": "America/Toronto",
         "time_diff": -300,
-        "timestamp": 1703861991
+        "timestamp": 1703906183
     },
     "get_device_usage": {
         "time_usage": {
-            "past30": 5953,
-            "past7": 1974,
-            "today": 0
+            "past30": 6246,
+            "past7": 2267,
+            "today": 293
         }
     }
 }
