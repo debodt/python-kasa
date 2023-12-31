@@ -98,7 +98,7 @@ PLUGS_IOT = {
     "KP401",
     "KS200M",
 }
-PLUGS_SMART = {"P110", "KP125M", "EP25"}
+PLUGS_SMART = {"P110", "KP125M", "EP25", "KS205"}
 PLUGS = {
     *PLUGS_IOT,
     *PLUGS_SMART,
@@ -108,7 +108,7 @@ STRIPS_SMART = {}  # type: ignore[var-annotated]
 STRIPS = {*STRIPS_IOT, *STRIPS_SMART}
 
 DIMMERS_IOT = {"ES20M", "HS220", "KS220M", "KS230", "KP405"}
-DIMMERS_SMART = {}  # type: ignore[var-annotated]
+DIMMERS_SMART = {"KS225"}  # type: ignore[var-annotated]
 DIMMERS = {
     *DIMMERS_IOT,
     *DIMMERS_SMART,
@@ -208,7 +208,7 @@ no_emeter_iot = parametrize(
 bulb = parametrize("bulbs", BULBS, protocol_filter={"SMART", "IOT"})
 plug = parametrize("plugs", PLUGS, protocol_filter={"IOT"})
 strip = parametrize("strips", STRIPS, protocol_filter={"IOT"})
-dimmer = parametrize("dimmers", DIMMERS, protocol_filter={"IOT"})
+dimmer = parametrize("dimmers", DIMMERS, protocol_filter={"SMART", "IOT"})
 lightstrip = parametrize("lightstrips", LIGHT_STRIPS, protocol_filter={"IOT"})
 
 # bulb types
@@ -326,6 +326,9 @@ def device_for_file(model, protocol):
             if d in model:
                 return TapoPlug
         for d in BULBS_SMART:
+            if d in model:
+                return TapoBulb
+        for d in DIMMERS_SMART:
             if d in model:
                 return TapoBulb
     else:
