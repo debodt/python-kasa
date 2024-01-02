@@ -46,7 +46,7 @@ SUPPORTED_DEVICES = SUPPORTED_IOT_DEVICES + SUPPORTED_SMART_DEVICES
 BULBS_SMART_VARIABLE_TEMP = {"L530E"}
 BULBS_SMART_COLOR = {"L530E"}
 BULBS_SMART_LIGHT_STRIP: Set[str] = set()
-BULBS_SMART_DIMMABLE: Set[str] = set()
+BULBS_SMART_DIMMABLE = {"KS225"}
 BULBS_SMART = (
     BULBS_SMART_VARIABLE_TEMP.union(BULBS_SMART_COLOR)
     .union(BULBS_SMART_DIMMABLE)
@@ -108,14 +108,14 @@ STRIPS_SMART = {}  # type: ignore[var-annotated]
 STRIPS = {*STRIPS_IOT, *STRIPS_SMART}
 
 DIMMERS_IOT = {"ES20M", "HS220", "KS220M", "KS230", "KP405"}
-DIMMERS_SMART = {"KS225"}  # type: ignore[var-annotated]
+DIMMERS_SMART = {}  # type: ignore[var-annotated]
 DIMMERS = {
     *DIMMERS_IOT,
     *DIMMERS_SMART,
 }
 
 WITH_EMETER_IOT = {"HS110", "HS300", "KP115", "KP125", *BULBS_IOT}
-WITH_EMETER_SMART = {*PLUGS_SMART}
+WITH_EMETER_SMART = {"P110", "KP125M", "EP25"}
 WITH_EMETER = {*WITH_EMETER_IOT, *WITH_EMETER_SMART}
 
 DIMMABLE = {*BULBS, *DIMMERS}
@@ -208,7 +208,7 @@ no_emeter_iot = parametrize(
 bulb = parametrize("bulbs", BULBS, protocol_filter={"SMART", "IOT"})
 plug = parametrize("plugs", PLUGS, protocol_filter={"IOT"})
 strip = parametrize("strips", STRIPS, protocol_filter={"IOT"})
-dimmer = parametrize("dimmers", DIMMERS, protocol_filter={"SMART", "IOT"})
+dimmer = parametrize("dimmers", DIMMERS, protocol_filter={"IOT"})
 lightstrip = parametrize("lightstrips", LIGHT_STRIPS, protocol_filter={"IOT"})
 
 # bulb types
@@ -326,9 +326,6 @@ def device_for_file(model, protocol):
             if d in model:
                 return TapoPlug
         for d in BULBS_SMART:
-            if d in model:
-                return TapoBulb
-        for d in DIMMERS_SMART:
             if d in model:
                 return TapoBulb
     else:
